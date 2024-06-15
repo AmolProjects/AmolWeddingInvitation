@@ -118,58 +118,18 @@ const util = (() => {
         }, timeout);
     };
 
-
     const timer = () => {
         let countDownDate = (new Date(document.getElementById('tampilan-waktu').getAttribute('data-waktu').replace(' ', 'T'))).getTime();
 
         setInterval(() => {
             let distance = Math.abs(countDownDate - (new Date()).getTime());
 
-
-    // const timer = () => {
-        // let countDownDate = (new Date(document.getElementById('tampilan-waktu').getAttribute('data-waktu').replace(' ', 'T'))).getTime();
-
-        // setInterval(() => {
-            // let distance = Math.abs(countDownDate - (new Date()).getTime());
-
-            // document.getElementById('hari').innerText = Math.floor(distance / (1000 * 60 * 60 * 24));
-            // document.getElementById('jam').innerText = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            // document.getElementById('menit').innerText = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            // document.getElementById('detik').innerText = Math.floor((distance % (1000 * 60)) / 1000);
-        // }, 1000);
-    // };
-	
-	const timer = () => {
-    let countDownDate = new Date(document.getElementById('tampilan-waktu').getAttribute('data-waktu').replace(' ', 'T')).getTime();
-
-    setInterval(() => {
-        let now = new Date().getTime();
-        let distance = countDownDate - now;
-
-        if (distance < 0) {
-            // Event has already occurred, you may want to handle this case
-            clearInterval(timer);
-            document.getElementById('hari').innerText = '0';
-            document.getElementById('jam').innerText = '0';
-            document.getElementById('menit').innerText = '0';
-            document.getElementById('detik').innerText = '0';
-        } else {
-
             document.getElementById('hari').innerText = Math.floor(distance / (1000 * 60 * 60 * 24));
             document.getElementById('jam').innerText = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             document.getElementById('menit').innerText = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
             document.getElementById('detik').innerText = Math.floor((distance % (1000 * 60)) / 1000);
-
         }, 1000);
     };
-
-        }
-    }, 1000);
-};
-
-timer();
-
-
 
     const music = (btn) => {
         if (btn.getAttribute('data-status') !== 'true') {
@@ -422,7 +382,6 @@ const session = (() => {
 
     let body = document.querySelector('body');
 
-<<<<<<< HEAD
     // const login = async () => {
         // await request('POST', '/api/session')
             // .body({
@@ -442,27 +401,6 @@ const session = (() => {
                 // return;
             // });
     // };
-=======
-    const login = async () => {
-        await request('POST', '/api/session')
-            .body({
-                email: body.getAttribute('data-email'),
-                password: body.getAttribute('data-password')
-            })
-            .then((res) => {
-                if (res.code == 200) {
-                    localStorage.removeItem('token');
-                    localStorage.setItem('token', res.data.token);
-                    comment.ucapan();
-                }
-            })
-            .catch((err) => {
-                alert(`Terdapat kesalahan: ${err}`);
-                window.location.reload();
-                return;
-            });
-    };
->>>>>>> origin/main
 
     const check = async () => {
         const token = localStorage.getItem('token');
